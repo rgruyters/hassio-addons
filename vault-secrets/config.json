@@ -1,0 +1,26 @@
+{
+  "name": "Vault Secrets",
+  "version": "0.1",
+  "slug": "vault-secrets",
+  "description": "Use Vault to store and retrieve secrets",
+  "startup": "before",
+  "boot": "auto",
+  "arch": [
+    "armhf",
+    "amd64",
+    "i386"
+  ],
+  "map": [
+    "config:rw"
+  ],
+  "options": {
+    "vault_addr": "",
+    "vault_token": "",
+    "log_level": "info"
+  },
+  "schema": {
+    "vault_addr": "url",
+    "vault_token": "match(.+)",
+    "log_level": "match(^(debug|info|warn|err)$)"
+  }
+}
