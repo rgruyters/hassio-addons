@@ -3,6 +3,7 @@
   "version": "0.1",
   "slug": "vault-secrets",
   "description": "Use Vault to store and retrieve secrets",
+  "url": "https://github.com/rgruyters/hassio-addons/vault-secrets",
   "startup": "before",
   "boot": "auto",
   "arch": [
