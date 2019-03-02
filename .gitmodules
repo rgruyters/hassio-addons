@@ -1,0 +1,3 @@
+[submodule "hassio-backup-s3"]
+	path = hassio-backup-s3
+	url = https://github.com/rrostt/hassio-backup-s3
