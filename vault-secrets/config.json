@@ -1,6 +1,6 @@
 {
   "name": "Vault Secrets",
-  "version": "0.1",
+  "version": "0.3",
   "slug": "vault-secrets",
   "description": "Use Vault to store and retrieve secrets",
   "url": "https://github.com/rgruyters/hassio-addons/vault-secrets",
@@ -17,11 +17,15 @@
   "options": {
     "vault_addr": "",
     "vault_token": "",
+    "vault_retry_attempts": 5,
+    "vault_retry_backoff": "100ms",
     "log_level": "info"
   },
   "schema": {
     "vault_addr": "url",
     "vault_token": "match(.+)",
+    "vault_retry_attempts": "int",
+    "vault_retry_backoff": "match(.+)",
     "log_level": "match(^(debug|info|warn|err)$)"
   }
 }
