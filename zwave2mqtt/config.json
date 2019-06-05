@@ -40,5 +40,6 @@
     "certfile": "str",
     "keyfile": "str",
     "leave_front_door_open": "bool?"
-  }
+  },
+  "image": "rgruyters/zwave2mqtt-{arch}"
 }
