@@ -19,8 +19,13 @@ KEY_FILE=/ssl/$(jq --raw-output ".keyfile" $CONFIG_PATH)
 
 export VAULT_TOKEN VAULT_ADDR
 
-_opts="-log-level=$LOG_LEVEL -vault-renew-token -vault-retry -vault-retry-attempts $RETRY_ATTEMPTS -vault-retry-backoff $RETRY_BACKOFF"
+# Initial options we want to set
+#
+_opts="-log-level=$LOG_LEVEL -vault-renew-token -vault-retry \
+  -vault-retry-attempts $RETRY_ATTEMPTS -vault-retry-backoff $RETRY_BACKOFF"
 
+# When SSL_ENABLED is set add the extra options for SSL support
+#
 if [ $SSL_ENABLED == "true" ]; then
   if [ -e $CACERT_FILE -a -e $CERT_FILE -a -e $KEY_FILE ]; then
     _opts="$_opts --vault-ssl -vault-ssl-ca-cert=$CACERT_FILE \
@@ -31,7 +36,8 @@ if [ $SSL_ENABLED == "true" ]; then
   exit 1
 fi
 
+# Exec consul-template with all the options
+#
 exec /consul-template \
   $_opts \
-  -template "/hassio_secrets.ctmpl:/config/secrets.yaml"
-
+  -template "/etc/consul-template.d/hassio_secrets.ctmpl:/config/secrets.yaml"
