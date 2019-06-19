@@ -1,6 +1,5 @@
-ARG BUILD_FROM=hassioaddons/base:3.1.0
-# hadolint ignore=DL3006
-FROM ${BUILD_FROM}
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
