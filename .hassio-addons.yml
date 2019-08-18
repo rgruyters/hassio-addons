@@ -1,0 +1,10 @@
+---
+channel: stable
+addons:
+  vault-secrets:
+    repository: rgruyters/addon-vault-secrets
+    target: vault-secrets
+  zwave2mqtt:
+    repository: rgruyters/addon-zwave2mqtt
+    target: zwave2mqtt
+
