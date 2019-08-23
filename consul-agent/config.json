@@ -1,0 +1,43 @@
+{
+  "name": "Consul Agent",
+  "version": "0.1.0",
+  "slug": "consul-agent",
+  "description": "Use Consul Agent to advertise Home Assistant as a service",
+  "url": "https://github.com/rgruyters/addon-consul-agent",
+  "startup": "before",
+  "hassio_api": true,
+  "hassio_role": "manager",
+  "boot": "auto",
+  "host_network": true,
+  "arch": [
+    "armhf",
+    "armv7",
+    "amd64",
+    "i386"
+  ],
+  "map": [
+    "config:rw",
+    "ssl:rw"
+  ],
+  "options": {
+    "ssl": true,
+    "cafile": "cacert.pem",
+    "certfile": "fullchain.pem",
+    "keyfile": "privkey.pem",
+    "server_addr": "",
+    "consul_token": "",
+    "datacenter": "dc1",
+    "log_level": "info"
+  },
+  "schema": {
+    "ssl": "bool",
+    "cafile": "str",
+    "certfile": "str",
+    "keyfile": "str",
+    "server_addr": "url",
+    "consul_token": "match(.+)",
+    "datacenter": "str",
+    "log_level": "match(^(debug|info|warn|err)$)"
+  }
+}
+
