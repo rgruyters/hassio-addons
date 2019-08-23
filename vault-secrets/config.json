@@ -1,6 +1,6 @@
 {
   "name": "Vault Secrets",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "slug": "vault-secrets",
   "description": "Use Vault to store and retrieve secrets",
   "url": "https://github.com/rgruyters/hassio-addons/vault-secrets",
