@@ -1,0 +1,4 @@
+{
+  "server": false,
+  "data_dir": "/var/lib/consul"
+}

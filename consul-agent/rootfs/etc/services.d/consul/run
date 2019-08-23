@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+CONFIG_PATH=/data/options.json
+
+CONSUL_SERVER_ADDR=$(jq --raw-output ".server_addr" $CONFIG_PATH)
+CONSUL_TOKEN=$(jq --raw-output ".consul_token" $CONFIG_PATH)
+CONSUL_DC=$(jq --raw-output ".datacenter" $CONFIG_PATH)
+LOG_LEVEL=$(jq --raw-output ".log_level" $CONFIG_PATH)
+
+SSL_ENABLED=$(jq --raw-output ".ssl" $CONFIG_PATH)
+CACERT_FILE=/ssl/$(jq --raw-output ".cafile" $CONFIG_PATH)
+CERT_FILE=/ssl/$(jq --raw-output ".certfile" $CONFIG_PATH)
+KEY_FILE=/ssl/$(jq --raw-output ".keyfile" $CONFIG_PATH)
+
+
+# When SSL_ENABLED is set add the extra options for SSL support
+#
+if [ $SSL_ENABLED == "true" ]; then
+  if [ -e $CACERT_FILE -a -e $CERT_FILE -a -e $KEY_FILE ]; then
+    continue
+  fi
+
+  echo "When enabling SSL you should add the appropiate cafile, certfile, and keyfile to /ssl path..."
+  exit 1
+fi
+
+exec consul agent -config-dir=/etc/consul.d -datacenter=$CONSUL_DC -retry-join=$CONSUL_SERVER_ADDR -log-level=$LOG_LEVEL

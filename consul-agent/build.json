@@ -1,0 +1,12 @@
+{
+  "squash": false,
+  "build_from": {
+    "amd64": "hassioaddons/base-amd64:4.1.1",
+    "armhf": "hassioaddons/base-armhf:4.1.1",
+    "armv7": "hassioaddons/base-armv7:4.1.1",
+    "i386": "hassioaddons/base-i386:4.1.1"
+  },
+  "args": {
+    "CONSUL_VERSION": "1.5.3"
+  }
+}
