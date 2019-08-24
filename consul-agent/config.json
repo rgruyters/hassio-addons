@@ -1,6 +1,6 @@
 {
   "name": "Consul Agent",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "slug": "consul-agent",
   "description": "Use Consul Agent to advertise Home Assistant as a service",
   "url": "https://github.com/rgruyters/addon-consul-agent",
@@ -35,7 +35,7 @@
     "certfile": "str",
     "keyfile": "str",
     "server_addr": "match(.+)",
-    "consul_token": "match(.+)?",
+    "consul_token": "str?",
     "datacenter": "str",
     "log_level": "match(^(debug|info|warn|err)$)"
   }
