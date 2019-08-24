@@ -25,8 +25,6 @@ RUN apk add --no-cache jq unzip \
 
 COPY rootfs /
 
-USER 999
-
 LABEL \
   io.hass.name="Consul Agent" \
   io.hass.description="Use Consul Agent to advertise Home Assistant as a service" \
