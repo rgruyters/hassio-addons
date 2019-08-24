@@ -1,6 +1,6 @@
 {
   "name": "Consul Agent",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "slug": "consul-agent",
   "description": "Use Consul Agent to advertise Home Assistant as a service",
   "url": "https://github.com/rgruyters/addon-consul-agent",

@@ -17,7 +17,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apk add --no-cache jq unzip \
   && [ $BUILD_ARCH = "armhf" -o $BUILD_ARCH = "armv7" ] && CONSUL_ARCH=arm || true \
-  && wget ${CONSUL_URL}/$CONSUL_VERSION/consul_${CONSUL_VERSION}_linux_$CONSUL_ARCH.zip -o /consul.zip \
+  && wget ${CONSUL_URL}/$CONSUL_VERSION/consul_${CONSUL_VERSION}_linux_$CONSUL_ARCH.zip -O /consul.zip \
   && unzip -x /consul.zip && rm /consul.zip \
   && chmod +x /consul \
   && mkdir -p -m 750 /var/lib/consul \
