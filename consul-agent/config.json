@@ -1,6 +1,6 @@
 {
   "name": "Consul Agent",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "slug": "consul-agent",
   "description": "Use Consul Agent to advertise Home Assistant as a service",
   "url": "https://github.com/rgruyters/addon-consul-agent",
@@ -26,6 +26,7 @@
     "keyfile": "privkey.pem",
     "server_addr": "",
     "consul_token": "",
+    "bind_interface": "eth0",
     "datacenter": "dc1",
     "log_level": "info"
   },
@@ -36,6 +37,7 @@
     "keyfile": "str",
     "server_addr": "match(.+)",
     "consul_token": "str?",
+    "bind_interface": "match(.+)",
     "datacenter": "str",
     "log_level": "match(^(debug|info|warn|err)$)"
   }

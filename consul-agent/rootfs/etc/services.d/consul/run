@@ -6,6 +6,7 @@ CONFIG_PATH=/data/options.json
 
 CONSUL_SERVER_ADDR=$(jq --raw-output ".server_addr" $CONFIG_PATH)
 CONSUL_TOKEN=$(jq --raw-output ".consul_token" $CONFIG_PATH)
+CONSUL_BIND_INTERFACE=$(jq --raw-output ".bind_interface" $CONFIG_PATH)
 CONSUL_DC=$(jq --raw-output ".datacenter" $CONFIG_PATH)
 LOG_LEVEL=$(jq --raw-output ".log_level" $CONFIG_PATH)
 
@@ -26,4 +27,16 @@ if [ $SSL_ENABLED == "true" ]; then
   exit 1
 fi
 
-exec /consul agent -config-dir=/etc/consul.d -datacenter=$CONSUL_DC -retry-join=$CONSUL_SERVER_ADDR -log-level=$LOG_LEVEL
+CONSUL_BIND=
+if [ ! -z "$CONSUL_BIND_INTERFACE" ]; then
+  CONSUL_BIND_ADDRESS=$(ip -o -4 addr list $CONSUL_BIND_INTERFACE | head -n1 | awk '{print $4}' | cut -d/ -f1)
+  if [ -z "$CONSUL_BIND_ADDRESS" ]; then
+    echo "Could not find IP for interface '$CONSUL_BIND_INTERFACE', exiting"
+    exit 1
+  fi
+
+  CONSUL_BIND="-bind=$CONSUL_BIND_ADDRESS"
+  echo "==> Found address '$CONSUL_BIND_ADDRESS' for interface '$CONSUL_BIND_INTERFACE', setting bind option..."
+fi
+
+exec /consul agent -config-dir=/etc/consul.d -datacenter=$CONSUL_DC -retry-join=$CONSUL_SERVER_ADDR -log-level=$LOG_LEVEL $CONSUL_BIND
