@@ -26,4 +26,4 @@ if [ $SSL_ENABLED == "true" ]; then
   exit 1
 fi
 
-exec consul agent -config-dir=/etc/consul.d -datacenter=$CONSUL_DC -retry-join=$CONSUL_SERVER_ADDR -log-level=$LOG_LEVEL
+exec /consul agent -config-dir=/etc/consul.d -datacenter=$CONSUL_DC -retry-join=$CONSUL_SERVER_ADDR -log-level=$LOG_LEVEL
