@@ -1,12 +1,12 @@
 {
   "name": "Consul Agent",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "slug": "consul-agent",
   "description": "Use Consul Agent to advertise Home Assistant as a service",
   "url": "https://github.com/rgruyters/addon-consul-agent",
   "startup": "before",
   "hassio_api": true,
-  "hassio_role": "manager",
+  "hassio_role": "default",
   "boot": "auto",
   "host_network": true,
   "arch": [
