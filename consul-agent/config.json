@@ -1,6 +1,6 @@
 {
   "name": "Consul Agent",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "slug": "consul-agent",
   "description": "Use Consul Agent to advertise Home Assistant as a service",
   "url": "https://github.com/rgruyters/addon-consul-agent",
@@ -28,6 +28,7 @@
     "consul_token": "",
     "bind_interface": "eth0",
     "datacenter": "dc1",
+    "consul_name": "hassio",
     "log_level": "info"
   },
   "schema": {
@@ -39,6 +40,7 @@
     "consul_token": "str?",
     "bind_interface": "match(.+)",
     "datacenter": "str",
+    "consul_name": "str",
     "log_level": "match(^(debug|info|warn|err)$)"
   }
 }
